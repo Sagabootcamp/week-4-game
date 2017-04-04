@@ -16,6 +16,127 @@
 
 window.onload = function() {
 
+	numberGuessGame.reset();
+	$("#crystal1").click(numberGuessGame.crystal1);
+	//console.log(numberGuessGame.rCNumber1);
+	$("#crystal2").click(numberGuessGame.crystal2);
+	//console.log(numberGuessGame.rCNumber2);
+	$("#crystal3").click(numberGuessGame.crystal3);
+	//console.log(numberGuessGame.rCNumber3);
+	$("#crystal4").click(numberGuessGame.crystal4);
+	//console.log(numberGuessGame.rCNumber4);
+};
+
+var score = 0;
+
+var numberGuessGame = {
+
+	rGNumber : 0,
+
+	rCNumber1 : 0,
+
+	rCNumber2 : 0,
+
+	rCNumber3 : 0,
+
+	rCNumber4 : 0,
+
+	wCounter: 0,
+
+	lCounter: 0,
+	
+	reset: function() {
+
+		numberGuessGame.rGNumber = Math.floor(Math.random() * ((120-19)+1) + 19);
+		score = 0;
+		numberGuessGame.rCNumber1 = Math.floor(Math.random() * ((12-1)+1) + 1);
+		numberGuessGame.rCNumber2 = Math.floor(Math.random() * ((12-1)+1) + 1);
+		numberGuessGame.rCNumber3 = Math.floor(Math.random() * ((12-1)+1) + 1);
+		numberGuessGame.rCNumber4 = Math.floor(Math.random() * ((12-1)+1) + 1);
+		console.log(numberGuessGame.rCNumber1);
+		console.log(numberGuessGame.rCNumber2);
+		console.log(numberGuessGame.rCNumber3);
+		console.log(numberGuessGame.rCNumber4);
+
+		$("#guess-num").html(numberGuessGame.rGNumber);
+		$("#total-score").html("");
+
+	},
+
+	gamechecker: function(score) {
+
+		if(score === numberGuessGame.rGNumber){
+			numberGuessGame.wCounter++;
+			//$("#message").html("You win!");
+			$("#wins").html(numberGuessGame.wCounter);
+			numberGuessGame.reset();
+		}
+
+		else if(score >= numberGuessGame.rGNumber){
+			numberGuessGame.lCounter++;
+		//	$("#message").html("Sorry you loose!");
+			$("#losses").html(numberGuessGame.lCounter);
+			numberGuessGame.reset();
+		}
+	},
+
+	/*crystalValue: function(rCNumber) {
+		score += rCNumber;
+		$("#total-score").html(score);
+		numberGuessGame.gamechecker();
+
+	}*/
+
+	crystal1: function(){
+		//numberGuessGame.rCNumber1 = Math.floor(Math.random() * ((12-1)+1) + 1);
+		score += numberGuessGame.rCNumber1;
+		$("#total-score").html(score);
+		numberGuessGame.gamechecker(score);
+
+	},
+
+	crystal2: function(){
+		score += numberGuessGame.rCNumber2;
+		$("#total-score").html(score);
+		numberGuessGame.gamechecker(score);
+	},
+
+	crystal3: function(){
+		score += numberGuessGame.rCNumber3;
+		$("#total-score").html(score);
+		numberGuessGame.gamechecker(score);
+	},
+
+	crystal4: function(){
+		score += numberGuessGame.rCNumber4;
+		$("#total-score").html(score);
+		numberGuessGame.gamechecker(score);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*window.onload = function() {
+
 randomGuessNumber();
 
 $("#guess-num").append(guessNumber);
